@@ -1,15 +1,6 @@
-name: Terraform plan
-
-on:
-  - pull_request
-
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   terraform:
-    name: "Terraform Plan"
+    name: "Terraform Apply"
     runs-on: ubuntu-latest
 
     env:
@@ -40,3 +31,8 @@ jobs:
         working-directory: terrafon
         shell: bash
         run: terraform plan -input=false
+
+      - name: Terraform Apply
+        working-directory: terrafon
+        shell: bash
+        run: terraform apply -input=false -auto-approve
