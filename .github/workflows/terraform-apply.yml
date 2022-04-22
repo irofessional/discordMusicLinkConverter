@@ -1,0 +1,38 @@
+jobs:
+  terraform:
+    name: "Terraform Apply"
+    runs-on: ubuntu-latest
+
+    env:
+      TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ap-northeast-1
+          role-to-assume: ${{ secrets.AWS_ACTIONS_ROLE_ARN }}
+
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        working-directory: ./terrafon
+        run: terraform init
+
+      - name: Terraform Validate
+        working-directory: ./terrafon
+        run: terraform validate
+
+      - name: Terraform plan
+        working-directory: ./terrafon
+        shell: bash
+        run: terraform plan -input=false
+
+      - name: Terraform Apply
+        working-directory: ./terrafon
+        shell: bash
+        run: terraform apply -input=false -auto-approve
