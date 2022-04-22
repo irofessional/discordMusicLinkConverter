@@ -29,14 +29,14 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        working-directory: terrafon
+        working-directory: terraform
         run: terraform init
 
       - name: Terraform Validate
-        working-directory: terrafon
+        working-directory: terraform
         run: terraform validate
 
       - name: Terraform plan
-        working-directory: terrafon
+        working-directory: terraform
         shell: bash
         run: terraform plan -input=false

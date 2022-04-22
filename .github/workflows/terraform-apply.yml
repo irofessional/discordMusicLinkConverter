@@ -1,3 +1,15 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+
 jobs:
   terraform:
     name: "Terraform Apply"
@@ -20,19 +32,19 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        working-directory: terrafon
+        working-directory: terraform
         run: terraform init
 
       - name: Terraform Validate
-        working-directory: terrafon
+        working-directory: terraform
         run: terraform validate
 
       - name: Terraform plan
-        working-directory: terrafon
+        working-directory: terraform
         shell: bash
         run: terraform plan -input=false
 
       - name: Terraform Apply
-        working-directory: terrafon
+        working-directory: terraform
         shell: bash
         run: terraform apply -input=false -auto-approve
