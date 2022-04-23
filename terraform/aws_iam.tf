@@ -66,7 +66,7 @@ resource "aws_iam_policy" "task_policy" {
 
 resource "aws_iam_role" "bot_task_role" {
   name               = "${local.prefix}-TaskRole"
-  assume_role_policy = data.aws_iam_policy_document.task_role_doc.json
+  assume_role_policy = data.aws_iam_policy_document.task_role.json
 }
 
 resource "aws_iam_role_policy_attachment" "bot_task" {

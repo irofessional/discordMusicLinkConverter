@@ -1,1 +1,1 @@
-github_repo_name="irofessional/discordMusicLinkConverter"
+github_repo_name = "irofessional/discordMusicLinkConverter"
