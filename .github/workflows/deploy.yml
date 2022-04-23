@@ -54,10 +54,16 @@ jobs:
         shell: bash
         run: terraform apply -input=false -auto-approve
       
+      - name: Terraform Outputs
+        id: output
+        working-directory: terraform
+        shell: bash
+        run: terraform output -raw ecr_url
+      
       - name: Build and push image
         env:
-          ECR_URL: ${{ secrets.AWS_ECR_URL }}
-          IMAGE_TAG: ${{ github.sha1 }}
+          ECR_URL: ${{ steps.output.outputs.stdout }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_URL:$IMAGE_TAG .
           docker push $ECR_URL:$IMAGE_TAG
