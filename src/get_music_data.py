@@ -20,6 +20,12 @@ def get_music_data(url) -> list:
                 "url": data["linksByPlatform"]["appleMusic"]["url"]
             }
         )
+        result.append(
+            {
+                "service": "youtubeMusic",
+                "url": data["linksByPlatform"]["youtubeMusic"]["url"]
+            }
+        )
     except KeyError:
         pass
     finally:
