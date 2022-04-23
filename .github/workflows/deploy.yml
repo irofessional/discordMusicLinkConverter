@@ -71,6 +71,9 @@ jobs:
       - name: Render task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
+        env:
+          ECR_URL: ${{ steps.output.outputs.stdout }}
+          IMAGE_TAG: ${{ github.sha }}
         with:
            task-definition: terraform/ecs-task-definition.json
            container-name: discordMusicLinkConverter
