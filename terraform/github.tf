@@ -1,12 +1,16 @@
+data "github_actions_public_key" "public_key" {
+  repository = var.github_repo_name
+}
+
 resource "github_actions_secret" "task_execution_role" {
-  secret_name = "AWS_taskExecutionRoleArn"
-  repository  = var.github_repo_name
+  secret_name     = "AWS_taskExecutionRoleArn"
+  repository      = var.github_repo_name
   plaintext_value = aws_iam_role.bot_task_execution_role.arn
 }
 
 resource "github_actions_secret" "task_role" {
-  secret_name = "AWS_taskRoleArn"
-  repository  = var.github_repo_name
+  secret_name     = "AWS_taskRoleArn"
+  repository      = var.github_repo_name
   plaintext_value = aws_iam_role.bot_task_role.arn
 }
 
