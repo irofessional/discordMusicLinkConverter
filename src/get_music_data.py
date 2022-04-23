@@ -10,7 +10,7 @@ def get_music_data(url) -> list:
     try:
         result.append(
             {
-                "service": "spotify",
+                "service": "Spotify",
                 "url": data['linksByPlatform']['spotify']['url']
             }
         )
