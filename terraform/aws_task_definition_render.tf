@@ -21,7 +21,7 @@ resource "local_file" "ecs_task_definition" {
             }
           ],
           "memoryReservation" : 64,
-          "image" : "PLACEHOLDER_bot_image",
+          "image" : "PLACEHOLDERBOTIMAGE",
           "name" : "discordMusicLinkConverter"
         }
       ],
