@@ -14,7 +14,7 @@ DISOCRD_CATEGORY_ID = int(os.getenv(key='DISOCRD_CATEGORY_ID'))
 MUSICLINK_ENDPOIT = "https://api.song.link/v1-alpha.1/links"
 
 MUSIC_URL_REGEX = re.compile(
-    r'(https?://music\.apple\.com/jp/(album|artist)/[\w\-\%]+/[\d])|(https?://open.spotify.com/(track|album|artist)/[\w]+)')
+    r'(https?://music\.apple\.com/jp/(album|artist)/[\w\-\%]+/[\d]+)|(https?://open\.spotify\.com/(track|album|artist)/[\w]+)')
 
 
 class MusicLinkConverter(discord.Bot):
