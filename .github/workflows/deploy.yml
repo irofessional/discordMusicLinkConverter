@@ -61,23 +61,22 @@ jobs:
         run: terraform output -raw ecr_url
       
       - name: Build and push image
+        id: build-image
         env:
           ECR_URL: ${{ steps.output.outputs.stdout }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_URL:$IMAGE_TAG .
           docker push $ECR_URL:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_URL:$IMAGE_TAG"
 
       - name: Render task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
-        env:
-          ECR_URL: ${{ steps.output.outputs.stdout }}
-          IMAGE_TAG: ${{ github.sha }}
         with:
            task-definition: terraform/ecs-task-definition.json
            container-name: discordMusicLinkConverter
-           image: $ECR_URL:$IMAGE_TAG
+           image: ${{ steps.build-image.outputs.image }}
       
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
