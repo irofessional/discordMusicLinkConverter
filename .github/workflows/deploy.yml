@@ -18,8 +18,6 @@ jobs:
     env:
       TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
       TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
-      GITHUB_TOKEN: ${{  secrets.GH_TOKEN }}
-
 
     steps:
       - name: checkout
@@ -56,13 +54,6 @@ jobs:
         shell: bash
         run: terraform apply -input=false -auto-approve
       
-      - name: Rewrite task-definition
-        run: |
-          sed -i -e s/PLACEHOLDER_taskExecutionRoleArn/${{ secrets.AWS_taskExecutionRoleArn }}/g ecs-task-definition.json
-          sed -i -e s/PLACEHOLDER_DISCORD_TOKEN/${{ secrets.AWS_DISCORD_BOT_TOKEN_ARN }}/g ecs-task-definition.json
-          sed -i -e s/PLACEHOLDER_DISOCRD_CATEGORY_ID/${{ secrets.AWS_DISOCRD_CATEGORY_ID_ARN }}/g ecs-task-definition.json
-          sed -i -e s/PLACEHOLDER_taskRoleArn/${{ secrets.AWS_taskRoleArn }}/g ecs-task-definition.json
-      
       - name: Build and push image
         env:
           ECR_URL: ${{ secrets.AWS_ECR_URL }}
@@ -75,11 +66,10 @@ jobs:
         id: tasf-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-           task-definition: ecs-task-definition.json
+           task-definition: terraform/ecs-task-definition.json
            container-name: discordMusicLinkConverter
            image: $ECR_URL:$IMAGE_TAG
       
-
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
