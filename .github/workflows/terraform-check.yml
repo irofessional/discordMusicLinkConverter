@@ -5,7 +5,15 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
+  actions: write
+  checks: read
+  contents: write
+  deployments: write
+  repository-projects: read
+  security-events: read
+  statuses: write
+
 
 jobs:
   terraform:
