@@ -32,17 +32,11 @@ class MusicLinkConverter(discord.Bot):
 
                 await message.reply(view=view)
 
-            except AttributeError:
+            except (AttributeError, MusicNotFoundError, requests.RequestException):
                 return
 
             except KeyError:
                 pass
-
-            except MusicNotFoundError:
-                return
-
-            except requests.RequestException:
-                return
 
 
 intents = discord.Intents.default()
