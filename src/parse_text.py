@@ -1,4 +1,5 @@
 import re
+from urllib import parse
 
 
 def parse_text(message_text: str) -> str:
@@ -13,8 +14,7 @@ def parse_text(message_text: str) -> str:
     for i in regex_list:
         result = re.search(i, message_text)
         if result:
-            return result.group()
-
+            return parse.quote(result.group(), safe="")
     raise MusicUrlNotContain
 
 
