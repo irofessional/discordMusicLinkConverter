@@ -3,10 +3,10 @@ variable "discord_bot_token" {
   sensitive = true
 }
 
-variable "github_repo_name" {
+variable "discord_bot_category" {
   type = string
 }
 
-variable "discord_bot_category" {
+variable "ecr_url" {
   type = string
 }
