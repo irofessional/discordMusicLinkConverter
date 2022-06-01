@@ -1,3 +1,3 @@
-output "ecr_url" {
-    value = aws_ecr_repository.bot_image.repository_url
+output "ecs_service_name" {
+  value = aws_ecs_service.bot.name
 }
