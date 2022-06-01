@@ -16,6 +16,8 @@ resource "aws_ecs_service" "bot" {
   task_definition = aws_ecs_task_definition.bot.arn
   desired_count   = 1
   network_configuration {
-
+    subnets = [
+      local.ecs_subnet_id
+    ]
   }
 }
