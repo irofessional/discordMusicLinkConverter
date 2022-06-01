@@ -28,7 +28,7 @@ locals {
 locals {
   task_definition = jsonencode(
     {
-      "executionRoleArn" : "${aws_ssm_parameter.bot_task_execution_role.arn}",
+      "executionRoleArn" : "${aws_iam_role.bot_task_execution_role.arn}",
       "containerDefinitions" : [
         {
           "cpu" : 0,
@@ -63,5 +63,6 @@ locals {
 }
 
 locals {
-  bot_image = "${var.ecr_uri}:${var.image_tag}"
+  bot_image     = "${var.ecr_uri}:${var.image_tag}"
+  ecs_subnet_id = "subnet-037f3f23c4ac2d42b"
 }
