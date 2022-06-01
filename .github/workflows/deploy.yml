@@ -59,6 +59,9 @@ jobs:
         env:
           TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
           TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
+          TF_VAR_ecs_cluster: ${{ secrets.ECS_CLUSTER }}
+          TF_VAR_ecr_uri: ${{ secrets.ECR_URI }}
+          TF_VAR_image_tag: ${{ github.sha }}
 
       - name: Terraform Apply
         working-directory: terraform
@@ -67,6 +70,9 @@ jobs:
         env:
           TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
           TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
+          TF_VAR_ecs_cluster: ${{ secrets.ECS_CLUSTER }}
+          TF_VAR_ecr_uri: ${{ secrets.ECR_URI }}
+          TF_VAR_image_tag: ${{ github.sha }}
       
       - name: Terraform Outputs
         id: output
