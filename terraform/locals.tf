@@ -63,5 +63,5 @@ locals {
 }
 
 locals {
-  bot_image = "${var.ecr_url}:${var.image_tag}"
+  bot_image = "${var.ecr_uri}:${var.image_tag}"
 }
