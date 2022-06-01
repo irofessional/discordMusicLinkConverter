@@ -17,13 +17,6 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
 
-    env:
-      TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
-      TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
-      TF_VAR_ecs_cluster: ${{ secrets.ECS_CLUSTER }}
-      TF_VAR_ecr_uri: ${{ secrets.ECR_URI }}
-      TF_VAR_image_tag: ${{ github.sha }}
-
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -40,13 +33,13 @@ jobs:
       
       - name: Build and push image
         id: build-image
-        env:
-          ECR_URL: ${{ secrets.ECR_URL }}
-          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_URL:$IMAGE_TAG .
           docker push $ECR_URL:$IMAGE_TAG
           echo "::set-output name=image::$ECR_URL:$IMAGE_TAG"
+        env:
+          ECR_URL: ${{ secrets.ECR_URI }}
+          IMAGE_TAG: ${{ github.sha }}
 
       - name: Terraform setup
         uses: hashicorp/setup-terraform@v1
@@ -63,11 +56,17 @@ jobs:
         working-directory: terraform
         shell: bash
         run: terraform plan -input=false
+        env:
+          TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
+          TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
 
       - name: Terraform Apply
         working-directory: terraform
         shell: bash
         run: terraform apply -input=false -auto-approve
+        env:
+          TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
+          TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
       
       - name: Terraform Outputs
         id: output
@@ -88,5 +87,5 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ steps.output.outputs.stdout }}
-          cluster: poralis-prod-shared
+          cluster: ${{ secrets.ECS_CLUSTER }}
       
