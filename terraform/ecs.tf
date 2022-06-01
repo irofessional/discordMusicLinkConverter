@@ -8,6 +8,7 @@ resource "aws_ecs_task_definition" "bot" {
   task_role_arn            = aws_iam_role.bot_task_execution_role.arn
   execution_role_arn       = aws_iam_role.bot_task_role.arn
   requires_compatibilities = ["EC2"]
+  network_mode = "awsvpc"
 }
 
 resource "aws_ecs_service" "bot" {
