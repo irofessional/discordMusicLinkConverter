@@ -1,3 +1,3 @@
 output "ecs_service_name" {
-    value = aws_ecs_service.bot.name
+  value = aws_ecs_service.bot.name
 }

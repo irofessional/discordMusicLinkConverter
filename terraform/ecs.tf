@@ -1,5 +1,5 @@
 data "aws_ecs_cluster" "cluster" {
-  name = var.ecs_cluster
+  cluster_name = var.ecs_cluster
 }
 
 resource "aws_ecs_task_definition" "bot" {
@@ -16,6 +16,6 @@ resource "aws_ecs_service" "bot" {
   task_definition = aws_ecs_task_definition.bot.arn
   desired_count   = 1
   network_configuration {
-    
+
   }
 }
