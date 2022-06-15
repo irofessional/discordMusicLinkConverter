@@ -21,6 +21,10 @@ jobs:
     name: Terraform Apply
     runs-on: ubuntu-latest
 
+    env:
+      TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
+      TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
+
     steps:
       - name: checkout
         uses: actions/checkout@v2
