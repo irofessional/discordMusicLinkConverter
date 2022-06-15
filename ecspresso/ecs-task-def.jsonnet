@@ -4,7 +4,7 @@
       cpu: 0,
       environment: [],
       essential: true,
-      image: '{{ must_env `image_tag` }}',
+      image: '{{ must_env `IMAGE_TAG` }}',
       memoryReservation: 64,
       mountPoints: [],
       name: 'discordMusicLinkConverter',
