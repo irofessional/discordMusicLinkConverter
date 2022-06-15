@@ -97,6 +97,7 @@ jobs:
       
       - name: Get short commit hash
         id: get-hash
+        working-directory: .
         run: |
           echo "ECR_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
