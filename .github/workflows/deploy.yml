@@ -101,7 +101,7 @@ jobs:
         run: |
           echo "ECR_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - name: debug
+      - name: output image tag
         run: |
           echo "${{ env.ECR_URI }}:${{ env.ecr_tag }}"
 
