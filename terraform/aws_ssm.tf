@@ -6,6 +6,6 @@ resource "aws_ssm_parameter" "discord_bot_token" {
 
 resource "aws_ssm_parameter" "discord_category_id" {
   name  = "discordMusicLinkConverter-Bot-category"
-  type  = "SecureString"
+  type  = "String"
   value = var.discord_bot_category
 }
