@@ -1,0 +1,22 @@
+{
+  "name": "discordmusiclinkconverter",
+  "version": "1.0.0",
+  "description": "discordに貼られたAppleMusicやSpotifyのリンクを変換するやつ",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irofessional/discordMusicLinkConverter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irofessional/discordMusicLinkConverter/issues"
+  },
+  "homepage": "https://github.com/irofessional/discordMusicLinkConverter#readme"
+}
