@@ -144,4 +144,4 @@ jobs:
       - name: Deploy to ECS
         working-directory: ./ecspresso
         run: |
-          ecspresso deploy --config config.yml
+          ecspresso deploy --config=./config.yml
