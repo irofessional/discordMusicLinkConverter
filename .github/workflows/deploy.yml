@@ -108,7 +108,7 @@ jobs:
           ECR_URI: 2526378883024.dkr.ecr.ap-northeast-1.amazonaws.com/discordmusiclinkconverter-prod
         with:
           push: true
-          tags: ${{ env.ECR_URI }}:${{ env.ECR_TAG }}
+          tags: ${{ env.ECR_URI }}:${{ env.ecr_tag }}
           context: .
           file: ./Dockerfile
 
