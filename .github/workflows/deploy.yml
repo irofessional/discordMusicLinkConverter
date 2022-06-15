@@ -14,16 +14,11 @@ permissions:
 
 env:
   AWS_ACTIONS_ROLE_ARN: ${{ secrets.AWS_ACTIONS_ROLE_ARN }} 
-  ECR_URI: ${{ secrets.ECR_URI }}
 
 jobs:
   terraform:
     name: Terraform Apply
     runs-on: ubuntu-latest
-
-    env:
-      TF_VAR_discord_bot_token: ${{ secrets.DISCORD_BOT_TOKEN }}
-      TF_VAR_discord_bot_category: ${{ secrets.DISCORD_BOT_CATEGORY }}
 
     steps:
       - name: checkout
@@ -103,11 +98,13 @@ jobs:
       - name: Get short commit hash
         id: get-hash
         run: |
-          echo "ecr_tag=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "ECR_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build and push image
         uses: docker/build-push-action@v2
         id: build-image
+        env:
+          ECR_URI: 2526378883024.dkr.ecr.ap-northeast-1.amazonaws.com/discordmusiclinkconverter-prod
         with:
           push: true
           tags: ${{ env.ECR_URI }}:${{ env.ECR_TAG }}
