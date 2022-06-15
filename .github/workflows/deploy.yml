@@ -124,5 +124,3 @@ deploy:
       working-directory: ./ecspresso
       run: |
         ecspresso deploy --config config.yml
-
-      
