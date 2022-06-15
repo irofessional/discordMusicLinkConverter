@@ -17,51 +17,51 @@ env:
 
 jobs:
   terraform:
-    - name: Terraform Apply
-      runs-on: ubuntu-latest
+    name: Terraform Apply
+    runs-on: ubuntu-latest
 
-    - name: Terraform setup
-      uses: hashicorp/setup-terraform@v1
+    steps:
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v1
 
-    - name: Terraform Init
-      id: init
-      shell: bash
-      run: terraform init
+      - name: Terraform Init
+        id: init
+        shell: bash
+        run: terraform init
 
-    - name: Terraform Apply
-      id: apply
-      shell: bash
-      continue-on-error: true
-      run: terraform apply -input=false -auto-approve
+      - name: Terraform Apply
+        id: apply
+        shell: bash
+        continue-on-error: true
+        run: terraform apply -input=false -auto-approve
 
-    - name: Write result to comment
-      uses: actions/github-script@0.9.0
-      env:
-        APPLY: "terraform\n${{ steps.apply.outputs.stdout }}"
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-          #### Terraform Apply 📖\`${{ steps.apply.outcome }}\`
+      - uses: actions/github-script@0.9.0
+        env:
+          APPLY: "terraform\n${{ steps.apply.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Apply 📖\`${{ steps.apply.outcome }}\`
 
-          <details><summary>Show Apply</summary>
+            <details><summary>Show Apply</summary>
 
-          \`\`\`${process.env.APPLY}\`\`\`
+            \`\`\`${process.env.APPLY}\`\`\`
 
-          </details>
+            </details>
 
-          *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
               
-          github.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: output
-          })
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
 
-    - name: Check on failures
-      if: steps.apply.outcome == 'failure'
-      run: exit 1
+      - name: Check on failures
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
 
 
   build:
