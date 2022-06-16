@@ -4,10 +4,15 @@ export interface SearchQuery {
     url: string
 }
 
-export interface SearchResult {
+export interface SearchBaseResult {
     ok: boolean
-    foundPlatforms: Array<PlatformLink>
 }
+
+export interface SearchResult extends SearchBaseResult {
+    ok: boolean
+    result: Array<PlatformLink>
+}
+
 
 export interface PlatformLink {
     name: string
