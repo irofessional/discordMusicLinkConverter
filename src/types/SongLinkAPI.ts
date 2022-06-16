@@ -1,13 +1,13 @@
-type SongLinkMusicPlatform = 'spotify' | 'itunes' | 'appleMusic' | 'youtube' |
+export type SongLinkMusicPlatform = 'spotify' | 'itunes' | 'appleMusic' | 'youtube' |
     'youtubeMusic' | 'google' | 'googleStore' | 'pandora' |
     'deezer' | 'tidal' | 'amazonStore' | 'amazonMusic' |
     'soundcloud' | 'napster' | 'yandex' | 'spinrilla'
 
-type SongLinkAPIProvider = 'spotify' | 'itunes' | 'youtube' | 'google' |
+export type SongLinkAPIProvider = 'spotify' | 'itunes' | 'youtube' | 'google' |
     'pandora' | 'deezer' | 'tidal' | 'amazon' |
     'soundcloud' | 'napster' | 'yandex' | 'spinrilla';
 
-interface PlatformLinkDetail {
+export interface PlatformLinkDetail {
     url: string
     entityUniqueId: string
     country?: string
@@ -15,7 +15,7 @@ interface PlatformLinkDetail {
     nativeAppUriDesktop?: string
 }
 
-interface entitiesByUniqueIdDetail {
+export interface entitiesByUniqueIdDetail {
     id: string
     type: 'song' | 'album'
     title?: string
@@ -27,11 +27,11 @@ interface entitiesByUniqueIdDetail {
     platforms: Array<SongLinkAPIProvider>
 }
 
-type linksByPlatform = Record<SongLinkMusicPlatform, PlatformLinkDetail>
+export type linksByPlatform = Record<SongLinkMusicPlatform, PlatformLinkDetail>
 
-type entitiesByUniqueId = Record<string, entitiesByUniqueIdDetail>
+export type entitiesByUniqueId = Record<string, entitiesByUniqueIdDetail>
 
-interface SongLinkResponse {
+export interface SongLinkResponse {
     entityUniqueId: string
     entitiesByUniqueId: entitiesByUniqueId
     linksByPlatform: linksByPlatform
