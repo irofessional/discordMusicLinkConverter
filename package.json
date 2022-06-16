@@ -2,13 +2,15 @@
   "name": "discordmusiclinkconverter",
   "version": "1.0.0",
   "description": "discordに貼られたAppleMusicやSpotifyのリンクを変換するやつ",
-  "main": "index.js",
+  "main": "dist/app.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
+    "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node src/app.ts"
+    "dev": "ts-node src/app.ts",
+    "build": "tsc --build"
   },
   "repository": {
     "type": "git",
