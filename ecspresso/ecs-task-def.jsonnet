@@ -15,7 +15,7 @@
           valueFrom: '{{ tfstate `aws_ssm_parameter.discord_bot_token.arn` }}',
         },
         {
-          name: 'DISOCRD_CATEGORY_ID',
+          name: 'DISCORD_ID',
           valueFrom: '{{ tfstate `aws_ssm_parameter.discord_category_id.arn` }}',
         },
       ],

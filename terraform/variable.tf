@@ -1,8 +1,8 @@
-variable "discord_bot_token" {
+variable "discord_token" {
   type      = string
   sensitive = true
 }
 
-variable "discord_bot_category" {
+variable "discord_id" {
   type = string
 }
