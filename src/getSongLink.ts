@@ -12,7 +12,7 @@ export const getSongLinkData = async (searchQuery: SearchQuery): Promise<SearchR
         }
     })
 
-    if (!(res.status === 200) || !(typeof res.data === "string")) {
+    if (!(res.status === 200)) {
         const result: SearchResult = {
             ok: false,
             result: []
@@ -20,8 +20,7 @@ export const getSongLinkData = async (searchQuery: SearchQuery): Promise<SearchR
         return result
     }
 
-
-    const songLinkdata: SongLinkResponse = JSON.parse(res.data)
+    const songLinkdata: SongLinkResponse = res.data
 
     const linksArray: Array<PlatformLink> = []
 
@@ -36,7 +35,7 @@ export const getSongLinkData = async (searchQuery: SearchQuery): Promise<SearchR
     if (songLinkdata.linksByPlatform.appleMusic) {
         const _: PlatformLink = {
             name: 'Apple Music',
-            url: songLinkdata.linksByPlatform.amazonMusic.url
+            url: songLinkdata.linksByPlatform.appleMusic.url
         }
         linksArray.push(_)
     }
