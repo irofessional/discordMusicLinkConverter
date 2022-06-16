@@ -9,14 +9,28 @@ const discordOptions: ClientOptions = {
     ]
 }
 
-const aaa: string = "s"
-
 const client = new Client(discordOptions)
 
-client.on('message', messageHandler)
+client.on('messageCreate', messageHandler)
 
-try {
-    client.login(process.env.DISOCORD_TOKEN)
-} catch (e) {
-    console.error(e)
+const main = () => {
+    if (!process.env.DISCORD_TOKEN) {
+        console.error({ message: "Discord token is not set." })
+        process.exit(1)
+    }
+
+    if (!process.env.DISCORD_ID) {
+        console.error({ message: "Target channel, category or guild id is not set." })
+        process.exit(1)
+    }
+
+    try {
+        client.login(process.env.DISOCORD_TOKEN)
+    } catch (e) {
+        console.error({ message: e })
+        process.exit(1)
+    }
+
 }
+
+main()
