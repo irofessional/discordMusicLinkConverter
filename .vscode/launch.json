@@ -2,13 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Bot",
-            "type": "python",
+            "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/src/app.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "cwd": "${workspaceRoot}/"
-        },
+            "name": "node",
+            "program": "${workspaceFolder}/src/app.ts",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "envFile": "${workspaceFolder}/.stg.env"
+          }
     ]
 }
