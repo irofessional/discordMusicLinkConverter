@@ -12,11 +12,11 @@
       secrets: [
         {
           name: 'DISCORD_TOKEN',
-          valueFrom: '{{ tfstate `aws_ssm_parameter.discord_bot_token.arn` }}',
+          valueFrom: '{{ tfstate `aws_ssm_parameter.discord_token.arn` }}',
         },
         {
           name: 'DISCORD_ID',
-          valueFrom: '{{ tfstate `aws_ssm_parameter.discord_category_id.arn` }}',
+          valueFrom: '{{ tfstate `aws_ssm_parameter.discord_id.arn` }}',
         },
       ],
       volumesFrom: [],
