@@ -1,5 +1,3 @@
-import { encode } from "querystring"
-
 export const userMessagePaser = (messageText: string): string | null => {
     const urlRegexList = [
         /(https?:\/\/music\.apple\.com\/jp\/album\/[\w\-\%]+\/[\d]+)/,
