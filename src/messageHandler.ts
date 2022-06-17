@@ -1,4 +1,4 @@
-import { Message, MessageActionRow, TextChannel, ThreadChannel } from "discord.js";
+import { Message, MessageActionRow, TextChannel } from "discord.js";
 import { createDiscordComponents } from "./createDiscordView";
 import { getSongLinkData } from "./getSongLink";
 import { SearchQuery, SearchResult, } from "./types/search";

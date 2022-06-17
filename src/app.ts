@@ -1,5 +1,5 @@
 import { Client, ClientOptions, Intents } from "discord.js"
-import { messageHandler } from "./messageHander"
+import { messageHandler } from "./messageHandler"
 
 
 const discordOptions: ClientOptions = {
