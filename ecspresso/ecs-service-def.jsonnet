@@ -23,7 +23,7 @@
       assignPublicIp: 'DISABLED',
       securityGroups: [],
       subnets: [
-        'subnet-037f3f23c4ac2d42b',
+        '{ tfstate `data.aws_subnet.c.id` }',
       ],
     },
   },
