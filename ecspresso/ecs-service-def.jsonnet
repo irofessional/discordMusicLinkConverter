@@ -1,8 +1,10 @@
+local subnet = import './subnet.libsonnet';
+
 {
   capacityProviderStrategy: [
     {
       base: 1,
-      capacityProvider: 'polaris-prod-cluster-capacity_provider',
+      capacityProvider: 'polaris-prod-shared-capacity_provider',
       weight: 1,
     },
   ],
@@ -22,9 +24,7 @@
     awsvpcConfiguration: {
       assignPublicIp: 'DISABLED',
       securityGroups: [],
-      subnets: [
-        '{ tfstate `data.aws_subnet.c.id` }',
-      ],
+      subnets: subnet,
     },
   },
   placementConstraints: [],
