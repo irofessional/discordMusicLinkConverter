@@ -1,11 +1,13 @@
-import { Client, ClientOptions, Intents } from "discord.js"
+import { Client, ClientOptions, GatewayIntentBits } from "discord.js"
 import { messageHandler } from "./messageHandler"
 
 
 const discordOptions: ClientOptions = {
     intents: [
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILDS
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers,
     ]
 }
 

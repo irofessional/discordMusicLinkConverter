@@ -1,4 +1,4 @@
-import { Message, MessageActionRow, TextChannel } from "discord.js";
+import { Message, ActionRowBuilder, TextChannel } from "discord.js";
 import { createDiscordComponents } from "./createDiscordView";
 import { getSongLinkData } from "./getSongLink";
 import { SearchQuery, SearchResult, } from "./types/search";
@@ -37,10 +37,10 @@ export const messageHandler = async (message: Message) => {
         return
     }
 
-    const components: Array<MessageActionRow> = createDiscordComponents(seachResult)
+    const components = createDiscordComponents(seachResult)
 
     message.reply({
-        components: components
+        components: components,
     })
 
 }
